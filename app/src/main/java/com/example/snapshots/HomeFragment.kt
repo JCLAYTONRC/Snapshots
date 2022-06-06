@@ -16,7 +16,6 @@ import com.example.snapshots.databinding.FragmentHomeBinding
 import com.example.snapshots.databinding.ItemSnapshotBinding
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.firebase.ui.database.SnapshotParser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +30,7 @@ class HomeFragment : Fragment(), HomeAux {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentHomeBinding.inflate(inflater,container,false)
         return mBinding.root
     }
@@ -42,14 +41,15 @@ class HomeFragment : Fragment(), HomeAux {
         val query = FirebaseDatabase.getInstance().reference.child("snapshots")
 
         val option =
-        FirebaseRecyclerOptions.Builder<Snapshot>().setQuery(query, {
+        FirebaseRecyclerOptions.Builder<Snapshot>().setQuery(query) {
             val snapshot = it.getValue(Snapshot::class.java)
             snapshot!!.id = it.key!!
             snapshot
-        }).build()
+        }.build()
 
 
         mFirebaseAdapter = object : FirebaseRecyclerAdapter<Snapshot, SnapshoHolder>(option){
+            @SuppressLint("StaticFieldLeak")
             private lateinit var mContext : Context
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SnapshoHolder {

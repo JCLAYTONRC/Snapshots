@@ -7,4 +7,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="post_message_title">Seleccione una imagen</string>
     <string name="post_message_valid_title">Por favor, agrega un titulo</string>
+    <string name="publicar">Publicar</string>
+    <string name="titulo_de_la_instantanea">titulo de la instantanea</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="imagendelete">ImagenDelete</string>
+    <string name="imagen_seleccionada">Imagen Seleccionada</string>
+    <string name="imagen_de_vista">Imagen de vista</string>
+    <string name="imagen_a_seleccionar">Imagen a seleccionar</string>
 </resources>

@@ -21,7 +21,7 @@
         android:id="@+id/btnPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Publicar"
+        android:text="@string/publicar"
         android:layout_marginTop="@dimen/common_padding_min"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressBar"/>
@@ -41,7 +41,7 @@
         android:id="@+id/tilTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="titulo de la instantanea"
+        android:hint="@string/titulo_de_la_instantanea"
         android:layout_marginTop="@dimen/common_padding_min"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:visibility="gone"
@@ -57,6 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
+        android:contentDescription="@string/imagen_de_vista"
         android:id="@+id/imgPhoto"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -69,6 +70,7 @@
         />
 
     <ImageButton
+        android:contentDescription="@string/imagen_a_seleccionar"
         android:id="@+id/btnSelect"
         android:layout_width="0dp"
         android:layout_height="0dp"

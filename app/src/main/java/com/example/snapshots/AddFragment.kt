@@ -22,7 +22,6 @@ import com.google.firebase.storage.StorageReference
 
 class AddFragment : Fragment() {
 
-    private val RC_GALLERY = 18
     private val PATH_SNAPSHOT = "snapshots"
 
     private lateinit var mBinding: FragmentAddBinding
@@ -35,9 +34,11 @@ class AddFragment : Fragment() {
         if(it.resultCode == Activity.RESULT_OK){
 
                 mPhotoSelectedUri = it.data?.data
-                mBinding.imgPhoto.setImageURI(mPhotoSelectedUri)
-                mBinding.tilTitle.visibility = View.VISIBLE
-                mBinding.tvMessage.text = getString(R.string.post_message_valid_title)
+                with(mBinding){
+                    imgPhoto.setImageURI(mPhotoSelectedUri)
+                    tilTitle.visibility = View.VISIBLE
+                    tvMessage.text = getString(R.string.post_message_valid_title)
+                }
         }
     }
 
@@ -53,9 +54,10 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mBinding.btnPost.setOnClickListener { postSnapshot() }
-
-        mBinding.btnSelect.setOnClickListener{ openGallery() }
+        with(mBinding){
+            btnPost.setOnClickListener { postSnapshot() }
+            btnSelect.setOnClickListener{ openGallery() }
+        }
 
         mStorageReference = FirebaseStorage.getInstance().reference
         mDatabaseReference = FirebaseDatabase.getInstance().reference.child(PATH_SNAPSHOT)
@@ -67,6 +69,7 @@ class AddFragment : Fragment() {
     }
 
     private fun postSnapshot() {
+
         mBinding.progressBar.visibility = View.VISIBLE
         val key = mDatabaseReference.push().key!!
         val storageRed = mStorageReference.child(PATH_SNAPSHOT)

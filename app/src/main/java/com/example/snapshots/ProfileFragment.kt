@@ -18,7 +18,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentProfileBinding.inflate(inflater,container,false)
         return mBinding.root
     }
@@ -26,10 +26,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mBinding.tvName.text = FirebaseAuth.getInstance().currentUser?.displayName
-        mBinding.tvEmail.text = FirebaseAuth.getInstance().currentUser?.email
+        with(mBinding){
+            tvName.text = FirebaseAuth.getInstance().currentUser?.displayName
+            tvEmail.text = FirebaseAuth.getInstance().currentUser?.email
 
-        mBinding.btnLogout.setOnClickListener { singOut() }
+            btnLogout.setOnClickListener { singOut() }
+        }
+
     }
 
     private fun singOut() {
